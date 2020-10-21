@@ -14,7 +14,7 @@ module.exports = {
   password: password,
   database: database,
 
-  entities: ['build/entities/*.js'],
+  entities: ['src/entities/*.ts'],
 
   synchronize: false,
 
