@@ -40,7 +40,9 @@ web-api.json
 .DS_Store
 Thumbs.db
 
-# Em cenário real, seria ideal não commitar os arquivos de configuração
-# Para fins de demonstração do trabalho realizado, os arquivos não foram ignorados via .gitignore
+# Ignore env configurations (sensitive data)
 .env
 .env.development
+
+# Ignore ORM logs
+ormlogs.log
