@@ -35,6 +35,13 @@ export class User {
   @Length(4, 100)
   password: string;
 
+  @ApiModelProperty({
+    description: "The user's role",
+  })
+  @Column({ length: 50 })
+  @Length(4, 50)
+  role: string;
+
   @Column()
   @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt?: Date;
@@ -47,8 +54,11 @@ export class User {
   @DeleteDateColumn({ type: 'timestamp with time zone' })
   deletedAt?: Date;
 
-  constructor(username: string, password: string) {
+  constructor(username: string, password: string, role: string) {
     this.username = username;
     this.password = password;
+    this.role = role;
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 }

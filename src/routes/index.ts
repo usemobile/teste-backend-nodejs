@@ -3,16 +3,18 @@ import swaggerUi from 'swagger-ui-express';
 
 import { UserController } from '~/controllers/UserController';
 import { MovieController } from '~/controllers/MovieController';
+import { verifyToken } from '~/helpers/authorization';
 
 const routes = Router();
 
 // User
 const userController = new UserController();
-routes.get('/users', userController.get);
-routes.get('/users/:id([0-9]+)', userController.getById);
+routes.get('/users', verifyToken, userController.get);
+routes.get('/users/:id([0-9]+)', verifyToken, userController.getById);
 routes.post('/users', userController.create);
-routes.patch('/users/:id([0-9]+)', userController.edit);
-routes.delete('/users/:id([0-9]+)', userController.delete);
+routes.post('/users/login', userController.login);
+routes.patch('/users/:id([0-9]+)', verifyToken, userController.edit);
+routes.delete('/users/:id([0-9]+)', verifyToken, userController.delete);
 
 // Movie
 const movieController = new MovieController();
